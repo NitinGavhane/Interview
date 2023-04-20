@@ -1,0 +1,167 @@
+SQL:
+
+show databses;
+
+create databse db_name;
+
+use db_name;
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Types of cmd:
+DDL => create, Drop, Alter , Truncate 			// Data Definition Language (CDAT)
+DML => Insert(into), Update(set), Delete(from)			// Data Manipulation Language  (IUD)
+DCL => Grant, Revoke						// Data Control Language		(GR)
+TCL => commite, Rollback, Savepoint				// Transaction Control Language (CRS)
+DQL => Select	(*)						// Data Query Language			(Select)
+
+
+DML==>
+create table table_name
+
+INSERT INTO users (id, name, email, age)
+VALUES (1, 'John Doe', 'johndoe@example.com', 30);
+
+UPDATE users
+SET email = 'johndoe@gmail.com'
+WHERE id = 1;
+
+DELETE FROM users
+WHERE id = 2;
+
+
+
+DCL==>
+GRANT SELECT ON users TO employee;
+
+REVOKE INSERT ON orders FROM manager;
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Agrigation Function:
+1) count(*)       SELECT COUNT(*) FROM users;
+2) sum()		SELECT SUM(sales) FROM products;
+3) avg()		SELECT AVG(age) FROM users;
+4) min()		SELECT MIN(price) FROM products;
+5) max()		SELECT MAX(score) FROM test_scores;
+
+
+*Find 2nd largest salary:
+select max(salary) from emp_salary where salary <> (select max(salary) from emp_salary);
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+1) Inner Join:
+select * from emp_info i join emp_salary s where i.emp_id = s.emp_salary_id;
+
+Example:
+show emp_id, emp_name and salary:
+select emp_info.emp_id,emp_info.emp_name,emp_salary.salary from emp_info join emp_salary where emp_info.emp_id = emp_salary.emp_salary_id;
+
+2) Left join: return rows left table and check rows matches in right table. if no matches available in right table then show rows as Null.
+3) Right join: return rows Right table and check rows matches in Left table. if no matches available in left table then show rows as Null.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+create a table student having student id of int type as primary key gender as putting constraints M/F first name last name class and then they send a link in the chat box after opening the link you will be redirected to his query page where a you have to perform many task as they want:
+
+#create student table =>
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY,
+    gender CHAR(1) NOT NULL CHECK (gender IN ('M', 'F')),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    class VARCHAR(20) NOT NULL
+);
+
+
+#insert data in this table:
+INSERT INTO student (student_id, gender, first_name, last_name, class)
+VALUES (1, 'M', 'John', 'Doe', '10th');
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+In SQL, the LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+The syntax for using LIKE is as follows:
+
+Like : R% ,%R ,%R%, _R% , %R_
+
+Q. get names starting with R?
+SELECT * FROM students WHERE name LIKE 'R%';
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. count number of employees having same salary
+
+select count(salary) from emp_salary;
+
+select salary,count(*) as emp from emp_salary order by salary;
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. what is view in sql?
+Ans:
+- virtual table that is based on the result of a SELECT statement. 
+- Views are used to simplify complex queries or provide a customized perspective on the data stored in one or more tables.
+
+
+
+
+Q. why need to create view? 
+Ans:
+There are several reasons why you might want to create a view in SQL:
+1] Simplify complex queries: 
+- Views can be used to encapsulate complex SQL logic into a simple and easy-to-use interface. 
+- By creating a view that combines multiple tables and/or applies complex filtering criteria, you can simplify queries that would otherwise be difficult to write or understand.
+
+2] Customize data access: 
+- Views can be used to provide a customized perspective on the data stored in one or more tables. 
+- For example, you might create a view that excludes certain columns or filters out rows that don't meet certain criteria, in order to provide a more tailored view of the data for a specific user or application.
+
+3] Security: 
+- Views can be used to limit access to sensitive data. 
+- By creating a view that only exposes certain columns or rows of a table, you can restrict access to the underlying data to only those users who need to see it.
+
+4] Performance: 
+- Views can be used to improve query performance. 
+- By precomputing complex queries and storing the results in a view, you can avoid having to repeatedly execute the same expensive query.
+
+
+
+
+Q. Syntax to create a view:
+
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+
+
+ex., create view view_emp_salary_data as
+select emp_salary_id,salary
+from emp_salary;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Q. write a sql query to get result from three tables ?
+Ans:
+use the 'JOIN' keyword to combine the data from multiple tables based on a common column or set of columns. 
+table1, table2, and table3:
+
+SELECT t1.column1, t2.column2, t3.column3
+FROM table1 t1
+JOIN table2 t2 ON t1.common_column = t2.common_column
+JOIN table3 t3 ON t2.common_column = t3.common_column;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.
+
+
+
